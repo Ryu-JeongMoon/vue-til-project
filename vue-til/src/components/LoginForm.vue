@@ -10,8 +10,6 @@
           <label for="password">pw:</label>
           <input id="password" type="text" v-model="password">
         </div>
-        <!--    <button v-bind:disabled="!isUsernameValid" type="submit">Login</button>-->
-        <!--    v-bind 는 생략 가능?-->
         <button :disabled="!isUsernameValid || !isPasswordValid" type="submit">Login</button>
         <p>{{ logMessage }}</p>
       </form>
@@ -50,10 +48,10 @@ export default {
           password: this.password,
         }
         const {data} = await loginUser(userData);
-        console.log(data.user.username);
+        console.log(data.token);
+        this.$store.commit('setToken', data.token);
         this.$store.commit('setUsername', data.user.username);
         this.$router.push('/main');
-        // this.logMessage = `${data.user.username}님이 로그인했습니다`
       } catch (error) {
         this.logMessage = `${error.response.data}`
         console.log(error.response);

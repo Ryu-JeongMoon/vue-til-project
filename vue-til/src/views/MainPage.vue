@@ -1,13 +1,43 @@
 <template>
   <div>
-    <h1>Main</h1>
+    <div class="main list-container contents">
+      <h1 class="page-header">Today I Learned</h1>
+      <LoadingSpinner v-if="isLoading"></LoadingSpinner>
+      <ul v-else>
+        <PostItemList v-for="postItem in postItems" :key="postItem._id" :postItem="postItem"></PostItemList>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
-export default {}
+import LoadingSpinner from "@/components/common/LoadingSpinner";
+import PostItemList from "@/components/posts/PostItemList";
+import {fetchPosts} from "@/api";
+
+export default {
+  data() {
+    return {
+      postItems: [],
+      isLoading: false,
+    }
+  },
+  methods: {
+    async fetchData() {
+      this.isLoading = true;
+      const {data} = await fetchPosts();
+      this.isLoading = false;
+      this.postItems = data.posts;
+    }
+  },
+  created() {
+    this.fetchData();
+  },
+  components: {
+    PostItemList,
+    LoadingSpinner,
+  }
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

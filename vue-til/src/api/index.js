@@ -1,10 +1,14 @@
-import axios from "axios";
+import axios from 'axios';
+import {setInterceptors} from "@/api/common/interceptors";
 
-// url 공통화, .env 에 작성하고 VUE_APP_ 을 prefix 로 붙이면 자동 로드!! 개꿀
-const instance = axios.create({
-  // baseURL: 'http://localhost:3000/',
-  baseURL: process.env.VUE_APP_API_URL,
-});
+function createInstance() {
+  const instance = axios.create({
+    baseURL: process.env.VUE_APP_API_URL,
+  });
+  return setInterceptors(instance);
+}
+
+const instance = createInstance();
 
 function registerUser(userData) {
   // url -> endpoint 라고도 함
@@ -15,4 +19,8 @@ function loginUser(userData) {
   return instance.post('login', userData);
 }
 
-export {registerUser, loginUser};
+function fetchPosts() {
+  return instance.get('posts');
+}
+
+export {registerUser, loginUser, fetchPosts};
