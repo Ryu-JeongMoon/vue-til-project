@@ -24,7 +24,7 @@
 <script>
 // index.js 자동으로 인식 되나보다
 // import {registerUser} from "@/api/index";
-import {registerUser} from "@/api";
+import {registerUser} from "@/api/auth";
 import {validateEmail} from "@/utils/validation";
 
 export default {

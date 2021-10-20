@@ -16,7 +16,7 @@
 <script>
 import LoadingSpinner from "@/components/common/LoadingSpinner";
 import PostItemList from "@/components/posts/PostItemList";
-import {fetchPosts} from "@/api";
+import {fetchPosts} from "@/api/posts";
 
 export default {
   data() {
