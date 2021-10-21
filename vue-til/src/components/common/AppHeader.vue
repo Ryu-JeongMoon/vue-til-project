@@ -1,10 +1,11 @@
 <template>
   <header>
     <div>
-      <router-link to="/" class="logo">
+      <router-link to="/" class="logo" v-if="!isUserLogin">
         TIL
         <span v-if="isUserLogin">by {{ $store.state.username }}</span>
       </router-link>
+      <router-link to="/main" class="logo" v-else>TIL</router-link>
     </div>
     <div class="navigations">
       <template v-if="isUserLogin">

@@ -8,7 +8,12 @@ function createPost(postData) {
   return postInstance.post('/', postData);
 }
 
+function deletePost(postId) {
+  return postInstance.delete(postId);
+}
+
 export {
   fetchPosts,
   createPost,
+  deletePost
 }

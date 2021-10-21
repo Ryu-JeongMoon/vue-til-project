@@ -4,7 +4,12 @@
       <h1 class="page-header">Today I Learned</h1>
       <LoadingSpinner v-if="isLoading"></LoadingSpinner>
       <ul v-else>
-        <PostItemList v-for="postItem in postItems" :key="postItem._id" :postItem="postItem"></PostItemList>
+        <PostItemList
+            v-for="postItem in postItems"
+            :key="postItem._id"
+            :postItem="postItem"
+            @refresh="fetchData">
+        </PostItemList>
       </ul>
     </div>
     <router-link to="/add" class="create-button">

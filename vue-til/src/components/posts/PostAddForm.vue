@@ -46,8 +46,7 @@ export default {
       } catch (error) {
         this.logMessage = error.response.data.message;
       }
-
-      this.initForm();
+      this.$router.push('/main');
     },
     initForm() {
       this.title = '';
