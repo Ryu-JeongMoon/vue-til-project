@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import VueRouter from "vue-router";
+import store from '@/store';
 
 Vue.use(VueRouter);
 
-export default new VueRouter({
+const router = new VueRouter({
   mode: 'history',
   routes: [
     {
@@ -21,14 +22,17 @@ export default new VueRouter({
     {
       path: '/main',
       component: () => import('@/views/MainPage'),
+      meta: {authenticated: true}
     },
     {
       path: '/add',
       component: () => import('@/views/PostAddPage'),
+      meta: {authenticated: true}
     },
     {
       path: '/post/:id',
       component: () => import('@/views/PostEditPage'),
+      meta: {authenticated: true}
     },
     {
       path: '*',
@@ -36,3 +40,13 @@ export default new VueRouter({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.authenticated && !store.getters.isLogin) {
+    next('/login');
+    return;
+  }
+  next();
+})
+
+export default router;
