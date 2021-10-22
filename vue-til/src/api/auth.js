@@ -1,5 +1,5 @@
 // login, signup, sign-out
-import {instance} from '@/api'
+import { instance } from '@/api';
 
 function registerUser(userData) {
   // url -> endpoint 라고도 함
@@ -10,7 +10,4 @@ function loginUser(userData) {
   return instance.post('login', userData);
 }
 
-export {
-  registerUser,
-  loginUser
-};
+export { registerUser, loginUser };

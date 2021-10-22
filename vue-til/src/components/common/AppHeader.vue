@@ -10,7 +10,9 @@
     <div class="navigations">
       <template v-if="isUserLogin">
         <span>{{ $store.state.username }}</span>
-        <a href="javascript:;" @click="logoutUser" class="logout-button">로그아웃</a>
+        <a href="javascript:" @click="logoutUser" class="logout-button"
+          >로그아웃</a
+        >
       </template>
       <template v-else>
         <router-link to="/login">로그인</router-link>
@@ -21,7 +23,7 @@
 </template>
 
 <script>
-import {deleteCookie} from "@/utils/cookies";
+import { deleteCookie } from '@/utils/cookies';
 
 export default {
   computed: {
@@ -30,7 +32,7 @@ export default {
     },
     logoLink() {
       return this.$store.getters.isLogin ? '/main' : 'login';
-    }
+    },
   },
   methods: {
     logoutUser() {
@@ -39,8 +41,8 @@ export default {
       deleteCookie('til_auth');
       deleteCookie('til_user');
       this.$router.push('/login');
-    }
-  }
+    },
+  },
 };
 </script>
 

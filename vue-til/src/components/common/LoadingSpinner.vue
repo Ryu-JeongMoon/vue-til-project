@@ -1,6 +1,6 @@
 <template>
   <div class="spinner-container">
-    <div class="spinner"/>
+    <div class="spinner" />
   </div>
 </template>
 

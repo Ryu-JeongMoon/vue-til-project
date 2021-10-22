@@ -4,17 +4,29 @@
       <form v-on:submit.prevent="submitForm" class="form">
         <div>
           <label for="username">id: </label>
-          <input id="username" type="text" v-model="username">
+          <input id="username" type="text" v-model="username" />
+          <p class="validation-text">
+            <span class="warning" v-if="!isUsernameValid && username">
+              Please enter an email address
+            </span>
+          </p>
         </div>
         <div>
           <label for="password">pw: </label>
-          <input id="password" type="text" v-model="password">
+          <input id="password" type="text" v-model="password" />
         </div>
         <div>
           <label for="nickname">nickname: </label>
-          <input id="nickname" type="text" v-model="nickname">
+          <input id="nickname" type="text" v-model="nickname" />
         </div>
-        <button v-bind:disabled="!isUsernameValid" type="submit">Signup</button>
+        <button
+          :disabled="!isUsernameValid || !password"
+          type="submit"
+          class="btn"
+          :class="!isUsernameValid || !password ? 'disabled' : null"
+        >
+          Signup
+        </button>
         <p>{{ logMessage }}</p>
       </form>
     </div>
@@ -24,8 +36,8 @@
 <script>
 // index.js 자동으로 인식 되나보다
 // import {registerUser} from "@/api/index";
-import {registerUser} from "@/api/auth";
-import {validateEmail} from "@/utils/validation";
+import { registerUser } from '@/api/auth';
+import { validateEmail } from '@/utils/validation';
 
 export default {
   data() {
@@ -37,7 +49,7 @@ export default {
 
       // log
       logMessage: '',
-    }
+    };
   },
   computed: {
     isUsernameValid() {
@@ -50,11 +62,11 @@ export default {
       const userData = {
         username: this.username,
         password: this.password,
-        nickname: this.nickname
+        nickname: this.nickname,
       };
 
       // destructuring
-      const {data} = await registerUser(userData);
+      const { data } = await registerUser(userData);
       console.log(data.username);
       this.logMessage = `${data.username}님이 가입되었습니둥`;
       this.initForm();
@@ -64,10 +76,8 @@ export default {
       this.nickname = '';
       this.password = '';
     },
-  }
-}
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

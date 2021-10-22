@@ -5,15 +5,13 @@
 </template>
 
 <script>
-import PostEditForm from "@/components/posts/PostEditForm";
+import PostEditForm from '@/components/posts/PostEditForm';
 
 export default {
   components: {
     PostEditForm,
-  }
-}
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

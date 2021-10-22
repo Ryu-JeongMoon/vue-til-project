@@ -5,15 +5,13 @@
 </template>
 
 <script>
-import PostAddForm from "@/components/posts/PostAddForm";
+import PostAddForm from '@/components/posts/PostAddForm';
 
 export default {
   components: {
     PostAddForm,
-  }
-}
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

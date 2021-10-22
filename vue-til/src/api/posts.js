@@ -1,4 +1,4 @@
-import {postInstance} from "@/api/index";
+import { postInstance } from '@/api/index';
 
 function fetchPosts() {
   return postInstance.get('/');
@@ -20,10 +20,4 @@ function editPost(postId, postData) {
   return postInstance.put(postId, postData);
 }
 
-export {
-  fetchPosts,
-  fetchPost,
-  createPost,
-  deletePost,
-  editPost
-}
+export { fetchPosts, fetchPost, createPost, deletePost, editPost };

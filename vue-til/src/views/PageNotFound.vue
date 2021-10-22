@@ -1,13 +1,9 @@
 <template>
-  <div>
-    없슴둥
-  </div>
+  <div>없슴둥</div>
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -4,13 +4,25 @@
       <form @submit.prevent="submitForm" class="form">
         <div>
           <label for="username">id:</label>
-          <input id="username" type="text" v-model="username">
+          <input id="username" type="text" v-model="username" />
+          <p class="validation-text">
+            <span class="warning" v-if="!isUsernameValid && username">
+              Please enter an email address
+            </span>
+          </p>
         </div>
         <div>
           <label for="password">pw:</label>
-          <input id="password" type="text" v-model="password">
+          <input id="password" type="text" v-model="password" />
         </div>
-        <button :disabled="!isUsernameValid || !isPasswordValid" type="submit">Login</button>
+        <button
+          :disabled="!isUsernameValid || !password"
+          type="submit"
+          class="btn"
+          :class="!isUsernameValid || !password ? 'disabled' : null"
+        >
+          Login
+        </button>
         <p>{{ logMessage }}</p>
       </form>
     </div>
@@ -18,7 +30,7 @@
 </template>
 
 <script>
-import {validateEmail} from "@/utils/validation";
+import { validateEmail } from '@/utils/validation';
 
 export default {
   data() {
@@ -29,7 +41,7 @@ export default {
 
       // log
       logMessage: '',
-    }
+    };
   },
   computed: {
     isUsernameValid() {
@@ -37,7 +49,7 @@ export default {
     },
     isPasswordValid() {
       return true;
-    }
+    },
   },
   methods: {
     async submitForm() {
@@ -45,11 +57,11 @@ export default {
         const userData = {
           username: this.username,
           password: this.password,
-        }
+        };
         await this.$store.dispatch('LOGIN', userData);
         this.$router.push('/main');
       } catch (error) {
-        this.logMessage = `${error.response.data}`
+        this.logMessage = `${error.response.data}`;
         console.log(error.response);
       } finally {
         this.initForm();
@@ -58,9 +70,9 @@ export default {
     initForm() {
       this.username = '';
       this.password = '';
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>

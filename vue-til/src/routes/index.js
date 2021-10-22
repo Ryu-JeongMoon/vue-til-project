@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import VueRouter from "vue-router";
+import VueRouter from 'vue-router';
 import store from '@/store';
 
 Vue.use(VueRouter);
@@ -9,7 +9,7 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      redirect: '/login'
+      redirect: '/login',
     },
     {
       path: '/login',
@@ -22,21 +22,21 @@ const router = new VueRouter({
     {
       path: '/main',
       component: () => import('@/views/MainPage'),
-      meta: {authenticated: true}
+      meta: { authenticated: true },
     },
     {
       path: '/add',
       component: () => import('@/views/PostAddPage'),
-      meta: {authenticated: true}
+      meta: { authenticated: true },
     },
     {
       path: '/post/:id',
       component: () => import('@/views/PostEditPage'),
-      meta: {authenticated: true}
+      meta: { authenticated: true },
     },
     {
       path: '*',
-      component: () => import('@/views/PageNotFound')
+      component: () => import('@/views/PageNotFound'),
     },
   ],
 });
@@ -47,6 +47,6 @@ router.beforeEach((to, from, next) => {
     return;
   }
   next();
-})
+});
 
 export default router;

@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import {deletePost} from "@/api/posts";
+import { deletePost } from '@/api/posts';
 
 export default {
   props: {
@@ -32,12 +32,10 @@ export default {
       }
     },
     routeEditPage() {
-      this.$router.push(`/post/${this.postItem._id}`)
-    }
-  }
-}
+      this.$router.push(`/post/${this.postItem._id}`);
+    },
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

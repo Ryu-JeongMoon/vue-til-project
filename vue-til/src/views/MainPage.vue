@@ -5,10 +5,11 @@
       <LoadingSpinner v-if="isLoading"></LoadingSpinner>
       <ul v-else>
         <PostItemList
-            v-for="postItem in postItems"
-            :key="postItem._id"
-            :postItem="postItem"
-            @refresh="fetchData">
+          v-for="postItem in postItems"
+          :key="postItem._id"
+          :postItem="postItem"
+          @refresh="fetchData"
+        >
         </PostItemList>
       </ul>
     </div>
@@ -19,24 +20,24 @@
 </template>
 
 <script>
-import LoadingSpinner from "@/components/common/LoadingSpinner";
-import PostItemList from "@/components/posts/PostItemList";
-import {fetchPosts} from "@/api/posts";
+import LoadingSpinner from '@/components/common/LoadingSpinner';
+import PostItemList from '@/components/posts/PostItemList';
+import { fetchPosts } from '@/api/posts';
 
 export default {
   data() {
     return {
       postItems: [],
       isLoading: false,
-    }
+    };
   },
   methods: {
     async fetchData() {
       this.isLoading = true;
-      const {data} = await fetchPosts();
+      const { data } = await fetchPosts();
       this.isLoading = false;
       this.postItems = data.posts;
-    }
+    },
   },
   created() {
     this.fetchData();
@@ -44,7 +45,7 @@ export default {
   components: {
     PostItemList,
     LoadingSpinner,
-  }
+  },
 };
 </script>
 
